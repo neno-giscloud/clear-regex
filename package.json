@@ -1,0 +1,32 @@
+{
+  "name": "clear-regex",
+  "version": "0.1.0",
+  "description": "Write regular expressions clearly with comments and named matches",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neno-giscloud/clear-regex.git"
+  },
+  "keywords": [
+    "regex",
+    "regexp",
+    "comments",
+    "named",
+    "match",
+    "named",
+    "group",
+    "clear",
+    "readable",
+    "tagged",
+    "template"
+  ],
+  "author": "neno@giscloud.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neno-giscloud/clear-regex/issues"
+  },
+  "homepage": "https://github.com/neno-giscloud/clear-regex#readme"
+}
