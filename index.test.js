@@ -14,3 +14,12 @@ test('handle regex with flags', () => {
     expect(crx('/[123]+/gmi'))
         .toEqual(/[123]+/gmi);
 });
+
+test('handle multiline input', () => {
+    expect(crx`
+        1
+        2
+        3
+    `)
+        .toEqual(/123/);
+});
