@@ -23,3 +23,19 @@ test('handle multiline input', () => {
     `)
         .toEqual(/123/);
 });
+
+test('handle comments', () => {
+    expect(crx`
+        1   # this is the first part
+        2   # this is the second
+        3   # the end
+    `).toEqual(/123/);
+});
+
+test('handle multiline with comments and flags', () => {
+    expect(crx`/
+        1   # this is the first part
+        2   # this is the second
+        3   # the end
+    /mg`).toEqual(/123/mg);
+});

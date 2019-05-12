@@ -1,14 +1,14 @@
 const inputWithSlashesAndFlags = /^\/([\w\W]+)\/([\w\W]+)?$/;
-const wrappingWhitespace = /(?:^\s+)|(?:\s+$)|(?:[\n\r]+)/gm;
+const whitespaceAndComments = /(^\s*)|(\s*(#.*)?\n)/gm;
 
-function removeWrappingWhitespace(str) {
-    return str.replace(wrappingWhitespace, "");
+function cleanInput(str) {
+    return str.replace(whitespaceAndComments, "");
 }
 
 function handleArrayInput(arr) {
     if (arr.length === 0) return "";
 
-    return arr.map(removeWrappingWhitespace).join("");
+    return arr.map(cleanInput).join("");
 }
 
 function clearRegex(input) {
