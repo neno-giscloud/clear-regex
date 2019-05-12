@@ -4,7 +4,7 @@
   "description": "Write regular expressions clearly with comments and named matches",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/neno-giscloud/clear-regex/issues"
   },
-  "homepage": "https://github.com/neno-giscloud/clear-regex#readme"
+  "homepage": "https://github.com/neno-giscloud/clear-regex#readme",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
 }
