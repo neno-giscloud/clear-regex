@@ -76,3 +76,15 @@ test('handle named matching groups', () => {
             }
         }));
 });
+
+test('handle combining regular expressions', () => {
+    const yearRx = /\d{4}/;
+    const monthRx = /\d{2}/;
+    const dayRx = /\d{2}/;
+
+    expect(crx`^
+        ${yearRx}-
+        ${monthRx}-
+        ${dayRx}
+    $`).toMatchRegex(new RegExp('^\\d{4}-\\d{2}-\\d{2}$'));
+});
