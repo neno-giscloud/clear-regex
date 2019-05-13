@@ -12,7 +12,7 @@ test('handle simple regex as string', () => {
 
 test('handle regex with flags', () => {
     expect(crx('/[123]+/gmi'))
-        .toEqual(/[123]+/gmi);
+        .toEqual(new RegExp('[123]+', 'gmi'));
 });
 
 test('handle multiline input', () => {
@@ -21,7 +21,7 @@ test('handle multiline input', () => {
         2
         3
     `)
-        .toEqual(/123/);
+        .toEqual(new RegExp('123'));
 });
 
 test('handle comments', () => {
@@ -29,7 +29,7 @@ test('handle comments', () => {
         1   # this is the first part
         2   # this is the second
         3   # the end
-    `).toEqual(/123/);
+    `).toEqual(new RegExp('123'));
 });
 
 test('handle multiline with comments and flags', () => {
@@ -37,5 +37,22 @@ test('handle multiline with comments and flags', () => {
         1   # this is the first part
         2   # this is the second
         3   # the end
-    /mg`).toEqual(/123/mg);
+    /mg`).toEqual(new RegExp('123', 'mg'));
+});
+
+test('handle named matching groups', () => {
+    const regex = crx`^
+        (?<year>\\d{4})-
+        (?<month>\\d{2})-
+        (?<day>\\d{2})
+    $`;
+    const input = '2019-01-13';
+    expect(input.match(regex)).toEqual(
+        expect.objectContaining({
+            groups: {
+                day: '13',
+                month: '01',
+                year: '2019'
+            }
+        }));
 });
