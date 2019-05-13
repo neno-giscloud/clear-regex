@@ -1,3 +1,5 @@
+require('regexp-polyfill');
+
 const inputWithSlashesAndFlags = /^\/([\w\W]+)\/([\w\W]+)?$/;
 const whitespaceAndComments = /(^\s*)|(\s*(#.*)?\n)/gm;
 
