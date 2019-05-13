@@ -1,18 +1,38 @@
 const crx = require('./index.js');
 
+expect.extend({
+    toMatchRegex(a, b) {
+        const sourcesMatch = a.source === b.source;
+        const flagsMatch = a.flags === b.flags;
+        const pass = sourcesMatch && flagsMatch;
+
+        return {
+            pass,
+            message: pass ?
+                () => `Didn't expect: ${a.toString()}\nReceived: ${b.toString()}` :
+                () => `Expected: ${a.toString()}\nReceived: ${b.toString()}`
+        };
+    }
+});
+
+test('handle undefined', () => {
+    expect(crx())
+        .toMatchRegex(new RegExp());
+});
+
 test('handle null', () => {
     expect(crx(null))
-        .toEqual(new RegExp(null));
+        .toMatchRegex(new RegExp(null));
 });
 
 test('handle simple regex as string', () => {
     expect(crx('^yaba(daba)+do+$'))
-        .toEqual(new RegExp('^yaba(daba)+do+$'));
+        .toMatchRegex(new RegExp('^yaba(daba)+do+$'));
 });
 
 test('handle regex with flags', () => {
     expect(crx('/[123]+/gmi'))
-        .toEqual(new RegExp('[123]+', 'gmi'));
+        .toMatchRegex(new RegExp('[123]+', 'gmi'));
 });
 
 test('handle multiline input', () => {
@@ -21,7 +41,7 @@ test('handle multiline input', () => {
         2
         3
     `)
-        .toEqual(new RegExp('123'));
+        .toMatchRegex(new RegExp('123'));
 });
 
 test('handle comments', () => {
@@ -29,7 +49,7 @@ test('handle comments', () => {
         1   # this is the first part
         2   # this is the second
         3   # the end
-    `).toEqual(new RegExp('123'));
+    `).toMatchRegex(new RegExp('123'));
 });
 
 test('handle multiline with comments and flags', () => {
@@ -37,7 +57,7 @@ test('handle multiline with comments and flags', () => {
         1   # this is the first part
         2   # this is the second
         3   # the end
-    /mg`).toEqual(new RegExp('123', 'mg'));
+    /mg`).toMatchRegex(new RegExp('123', 'mg'));
 });
 
 test('handle named matching groups', () => {
