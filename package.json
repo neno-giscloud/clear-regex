@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/neno-giscloud/clear-regex#readme",
   "devDependencies": {
-    "jest": "^24.8.0"
+    "jest": "^24.9.0"
   },
   "dependencies": {
     "regexp-polyfill": "^1.0.1"
